@@ -8,7 +8,7 @@ class LandmarksController < ApplicationController
   end
 
   get '/landmarks/new' do 
-
+    
     erb :'/landmarks/new'
   end
 
@@ -24,6 +24,22 @@ class LandmarksController < ApplicationController
     @landmark = Landmark.find(params[:id])
 
     erb :'/landmarks/show'
+  end
+
+  get '/landmarks/:id/edit' do 
+    @landmark = Landmark.find(params[:id])
+    #binding.pry
+    erb :'/landmarks/edit'
+  end
+
+  post '/landmarks/:id' do
+    #binding.pry
+    @landmark = Landmark.find(params[:id])
+
+    @landmark.update(params[:landmark])
+
+    redirect to("/landmarks/#{@landmark.id}") #need double quotes
+     #or else get URI::InvalidURIError: bad URI(is not URI?)
   end
 
 

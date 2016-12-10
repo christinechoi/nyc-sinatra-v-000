@@ -31,6 +31,7 @@ describe FiguresController do
     fill_in :figure_name, :with => "Doctor Who"
     check "title_#{Title.first.id}"
     click_button "Create New Figure"
+    #binding.pry
     figure = Figure.last
     expect(Figure.all.count).to eq(3)
     expect(figure.name).to eq("Doctor Who")
